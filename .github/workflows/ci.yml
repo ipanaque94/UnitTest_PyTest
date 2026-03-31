@@ -1,0 +1,44 @@
+name: Unit Tests CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: "🧪 Unit Tests + Coverage"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Smoke Tests
+        run: pytest -m smoke --no-cov -v
+
+      - name: Unit Tests + Coverage
+        run: |
+          pytest --cov=Logica \
+                 --cov-report=html:reports/coverage \
+                 --cov-report=term-missing \
+                 --cov-fail-under=90 \
+                 --html=reports/result.html \
+                 --self-contained-html \
+                 -v
+
+      - name: Publicar reporte de cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: reports/
+          retention-days: 30

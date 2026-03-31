@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.coverage
+venv/
+.venv/
+
+# Reportes — se generan en CI, no se suben al repo
+reports/
+htmlcov/
+
+# VS Code
+.vscode/
