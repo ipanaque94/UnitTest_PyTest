@@ -1,7 +1,0 @@
-{
-    "python.testing.pytestArgs": [
-        "D:/cursos de UDEMY/UNIT TESTING CON PYTHON/unitPyTest/Tests"
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
-}
